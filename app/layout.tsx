@@ -41,6 +41,11 @@ export const metadata: Metadata = {
   description:
     "Picturi în ulei și acrilic despre lumea interioară — umbră, simbol, prezență. Galerie, workshop-uri online și reflecții din atelier.",
   generator: "v0.app",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/apple-icon.png",
+  },
 }
 
 export const viewport = {

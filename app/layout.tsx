@@ -7,6 +7,7 @@ import { CustomCursor } from "@/components/custom-cursor"
 import { ScrollPercentage } from "@/components/scroll-percentage"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { PageTransition } from "@/components/page-transition"
+import { PagePreloader } from "@/components/page-preloader"
 import "./globals.css"
 
 const geist = Geist({
@@ -53,6 +54,7 @@ export default function RootLayout({
       className={`${geist.variable} ${geistMono.variable} ${cormorant.variable} bg-background`}
     >
       <body className="font-sans antialiased">
+        <PagePreloader />
         <ShadowCurtain />
         <CustomCursor />
         <ScrollPercentage />

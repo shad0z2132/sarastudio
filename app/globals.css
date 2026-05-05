@@ -73,12 +73,12 @@
     @apply border-border outline-ring/50;
   }
   html {
-    @apply bg-background min-h-full;
+    @apply min-h-full;
+    background-color: #0C0908;
   }
   body {
     @apply text-foreground antialiased;
     font-feature-settings: "ss01", "cv11";
-    background-color: #0C0908;
   }
   ::selection {
     background: var(--accent);

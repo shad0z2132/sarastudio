@@ -7,18 +7,17 @@
  * Scroll parallax + continuous drift + mouse interaction.
  */
 
-import { useRef, useEffect, useState } from "react"
+import { useEffect } from "react"
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "motion/react"
 
 const ORBS = [
-  { color: "#8B4513", size: "70vw", x: "-15%", y: "5%", opacity: 0.045, blur: 120 },   // umber
-  { color: "#4A306D", size: "55vw", x: "55%", y: "35%", opacity: 0.03, blur: 100 },   // deep purple
-  { color: "#C4956A", size: "45vw", x: "25%", y: "65%", opacity: 0.025, blur: 90 },   // warm gold
-  { color: "#2D1F3D", size: "80vw", x: "40%", y: "-10%", opacity: 0.02, blur: 140 },  // dark violet wash
+  { color: "#8B4513", size: "80vw", x: "10%", y: "0%", opacity: 0.05, blur: 140 },   // umber — top center-left
+  { color: "#4A306D", size: "70vw", x: "50%", y: "40%", opacity: 0.04, blur: 120 },   // deep purple — center-right
+  { color: "#C4956A", size: "60vw", x: "20%", y: "60%", opacity: 0.035, blur: 100 },   // warm gold — bottom-left
+  { color: "#2D1F3D", size: "90vw", x: "30%", y: "20%", opacity: 0.03, blur: 160 },   // dark violet — large wash center
 ]
 
 export function AmbientGlow() {
-  const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll()
 
   // Mouse tracking with spring physics
@@ -48,7 +47,6 @@ export function AmbientGlow() {
 
   return (
     <div
-      ref={ref}
       aria-hidden
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
@@ -64,7 +62,7 @@ export function AmbientGlow() {
             background: `radial-gradient(circle, ${orb.color} 0%, transparent 70%)`,
             opacity: orb.opacity,
             filter: `blur(${orb.blur}px)`,
-            x: useTransform(smoothMouseX, [-1, 1], [-30 * (i + 1), 30 * (i + 1)]),
+            x: useTransform(smoothMouseX, [-1, 1], [-40 * (i + 1), 40 * (i + 1)]),
           }}
           animate={{
             scale: [1, 1.08, 0.97, 1.05, 1],

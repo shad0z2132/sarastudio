@@ -8,6 +8,9 @@ import { ScrollPercentage } from "@/components/scroll-percentage"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { PageTransition } from "@/components/page-transition"
 import { PagePreloader } from "@/components/page-preloader"
+import { AmbientGlow } from "@/components/ambient-glow"
+import { CanvasTexture } from "@/components/canvas-texture"
+import { DustParticles } from "@/components/dust-particles"
 import "./globals.css"
 
 const geist = Geist({
@@ -55,6 +58,9 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         <PagePreloader />
+        <AmbientGlow />
+        <CanvasTexture />
+        <DustParticles count={20} />
         <ShadowCurtain />
         <CustomCursor />
         <ScrollPercentage />

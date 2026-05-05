@@ -36,7 +36,7 @@ export default async function HomePage() {
       <Hero />
 
       {/* 02 — INVITAȚIE */}
-      <section className="relative px-6 py-32 md:px-16 md:py-48 lg:px-32">
+      <section className="relative bg-gradient-to-b from-background via-[#0E0B0A] to-background px-6 py-32 md:px-16 md:py-48 lg:px-32">
         <span
           aria-hidden
           className="absolute inset-x-6 top-0 h-px bg-foreground/10 md:inset-x-16 lg:inset-x-32"
@@ -82,7 +82,9 @@ export default async function HomePage() {
       </section>
 
       {/* 03 — MANIFEST */}
-      <Manifest />
+      <div className="bg-gradient-to-b from-background via-[#0A0807] to-background">
+        <Manifest />
+      </div>
 
       {/* Ticker between manifest and gallery */}
       <div className="border-y border-foreground/10 py-5">
@@ -163,7 +165,7 @@ export default async function HomePage() {
       <WorkshopCTA />
 
       {/* 07 — REFLECȚII */}
-      <section className="relative px-6 py-32 md:px-16 md:py-48 lg:px-32">
+      <section className="relative bg-gradient-to-b from-background via-[#0E0B0A] to-background px-6 py-32 md:px-16 md:py-48 lg:px-32">
         <span
           aria-hidden
           className="absolute inset-x-6 top-0 h-px bg-foreground/10 md:inset-x-16 lg:inset-x-32"

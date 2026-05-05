@@ -9,10 +9,10 @@
 */
 :root {
   /* Core palette — 5 tokens total */
-  --background: #0A0A0A;        /* Deep Obsidian */
+  --background: #0C0908;        /* Warm obsidian — umber undertone */
   --foreground: #E8E6E1;        /* Gesso */
   --accent: #8B4513;            /* Raw Umber */
-  --surface: #141414;           /* Elevated obsidian (cards, nav fill) */
+  --surface: #141110;           /* Elevated warm obsidian */
   --muted-foreground: #8A8680;  /* Dimmed gesso (secondary text) */
 
   /* Semantic mappings to shadcn tokens */

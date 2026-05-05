@@ -61,24 +61,20 @@ export function SiteFooter() {
       </div>
 
       {/* ── MANIFESTO ZONE ───────────────────────────────────────── */}
-      <div ref={quoteRef} className="px-6 pt-24 pb-16 md:px-16 md:pt-32 lg:px-32">
+      <div ref={quoteRef} className="px-6 pt-16 pb-10 md:px-16 md:pt-20 lg:px-32">
         <div className="mx-auto max-w-[1400px]">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={quoteInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
+            transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
           >
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/20 block mb-8">
-              Manifest
-            </span>
-            <blockquote className="font-display text-2xl font-light italic leading-[1.3] text-foreground/60 md:text-4xl lg:text-5xl max-w-4xl">
-              „Nu există lumină fără umbră. Nu existe culoare fără tăcere.
-              <span className="text-foreground/40"> Fiecare pânză este o întrebare pe care o pun lumii — și mie însămi."</span>
+            <blockquote className="font-display text-xl font-light italic leading-[1.35] text-foreground/50 md:text-2xl lg:text-3xl max-w-3xl">
+              „Nu există lumină fără umbră. Nu există culoare fără tăcere."
             </blockquote>
-            <div className="mt-8 flex items-center gap-4">
-              <span className="h-px w-12 bg-accent/40" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/30">
-                Sara M. · {year}
+            <div className="mt-4 flex items-center gap-3">
+              <span className="h-px w-8 bg-accent/30" />
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/30">
+                Sara M.
               </span>
             </div>
           </motion.div>
@@ -86,30 +82,30 @@ export function SiteFooter() {
       </div>
 
       {/* ── LINKS + NEWSLETTER ZONE ──────────────────────────────── */}
-      <div className="px-6 pb-16 pt-12 md:px-16 md:pb-20 md:pt-16 lg:px-32">
+      <div className="px-6 pb-10 pt-8 md:px-16 md:pb-12 md:pt-10 lg:px-32">
         <div className="mx-auto max-w-[1400px]">
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:items-end">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
             {/* Wordmark + tagline */}
-            <div className="flex flex-col gap-6 lg:col-span-4">
+            <div className="flex flex-col gap-4 lg:col-span-4">
               <Link
                 href="/"
-                className="group inline-flex items-center gap-3 font-display text-4xl italic tracking-[-0.02em] text-foreground transition-[letter-spacing] duration-[1500ms] ease-out hover:tracking-[0.02em]"
+                className="group inline-flex items-center gap-2 font-display text-3xl italic tracking-[-0.02em] text-foreground"
               >
                 <span>Sara's</span>
                 <span
                   aria-hidden
-                  className="h-px w-0 bg-accent transition-[width] duration-[1500ms] ease-out group-hover:w-10"
+                  className="h-px w-0 bg-accent transition-[width] duration-[800ms] ease-out group-hover:w-8"
                 />
               </Link>
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/40">
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/40">
                 Studio · Viena · Arad
               </span>
-              <p className="mt-2 max-w-[30ch] font-display text-lg font-light italic leading-snug text-foreground/40">
+              <p className="max-w-[28ch] font-display text-sm font-light italic leading-snug text-foreground/40">
                 Pictură, scriere, prezență — privite îndelung.
               </p>
 
-              {/* Social placeholder */}
-              <div className="mt-4 flex items-center gap-6">
+              {/* Social links */}
+              <div className="flex items-center gap-5 pt-2">
                 <FooterLink href="https://instagram.com" muted>
                   Instagram
                 </FooterLink>
@@ -120,13 +116,13 @@ export function SiteFooter() {
             </div>
 
             {/* Nav columns */}
-            <nav className="grid grid-cols-1 gap-12 sm:grid-cols-3 lg:col-span-5 lg:gap-12">
+            <nav className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-5 lg:gap-10">
               {NAV_GROUPS.map((group) => (
-                <div key={group.label} className="flex flex-col gap-5">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/30">
+                <div key={group.label} className="flex flex-col gap-3">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/30">
                     {group.label}
                   </span>
-                  <ul className="flex flex-col gap-3">
+                  <ul className="flex flex-col gap-2">
                     {group.items.map((item) => (
                       <li key={item.href + item.label}>
                         <FooterLink href={item.href}>{item.label}</FooterLink>
@@ -145,45 +141,31 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* ── MASSIVE WORDMARK ZONE ────────────────────────────────── */}
-      <div className="relative border-t border-foreground/5 px-6 pb-10 pt-12 md:px-16 lg:px-32">
-        <div className="mx-auto max-w-[1400px]">
-          {/* Giant bleeding wordmark */}
-          <div className="relative overflow-hidden">
-            <span
-              aria-hidden
-              className="pointer-events-none block select-none font-display text-[22vw] font-light italic leading-[0.75] tracking-[-0.03em] text-foreground/[0.025] md:text-[18vw]"
-              style={{ marginLeft: "-2vw" }}
-            >
-              Studio
+      {/* ── BOTTOM BAR ───────────────────────────────────────────── */}
+      <div className="border-t border-foreground/5 px-6 py-6 md:px-16 lg:px-32">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+          <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/25">
+            © {year} Sara's Studio
+            <Separator />
+            <FooterLink href="/legal/termeni" muted>
+              Termeni
+            </FooterLink>
+            <Separator />
+            <FooterLink href="/legal/confidentialitate" muted>
+              Confidențialitate
+            </FooterLink>
+          </p>
+
+          {/* Back to top */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="group flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/25 transition-colors duration-500 hover:text-foreground/60"
+          >
+            <span>Sus</span>
+            <span className="flex h-6 w-6 items-center justify-center border border-foreground/10 transition-all duration-500 group-hover:border-foreground/30 group-hover:-translate-y-0.5">
+              ↑
             </span>
-          </div>
-
-          {/* Bottom meta row */}
-          <div className="mt-8 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/25">
-              © {year} Sara's Studio
-              <Separator />
-              <FooterLink href="/legal/termeni" muted>
-                Termeni
-              </FooterLink>
-              <Separator />
-              <FooterLink href="/legal/confidentialitate" muted>
-                Confidențialitate
-              </FooterLink>
-            </p>
-
-            {/* Back to top */}
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="group flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/25 transition-colors duration-500 hover:text-foreground/60"
-            >
-              <span>Sus</span>
-              <span className="flex h-8 w-8 items-center justify-center border border-foreground/10 transition-all duration-500 group-hover:border-foreground/30 group-hover:-translate-y-1">
-                ↑
-              </span>
-            </button>
-          </div>
+          </button>
         </div>
       </div>
     </footer>

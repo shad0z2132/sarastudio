@@ -87,10 +87,29 @@ export default async function HomePage() {
       </div>
 
       {/* Ticker between manifest and gallery */}
-      <div className="border-y border-foreground/10 py-5">
-        <Ticker speed={25}>
-          <span className="font-display text-xl lg:text-2xl text-foreground/[0.07] mx-6">
-            Galerie / Lucrări / Galerie / Lucrări / Galerie / Lucrări /
+      <div className="border-y border-foreground/10 py-4 md:py-5">
+        <Ticker speed={30} pauseOnHover>
+          <span className="flex items-center gap-6 md:gap-10 px-3 md:px-5">
+            <span className="font-display text-lg md:text-xl lg:text-2xl font-light italic text-foreground/[0.08]">
+              Galerie
+            </span>
+            <span className="h-1 w-1 rounded-full bg-accent/40" />
+            <span className="font-display text-lg md:text-xl lg:text-2xl font-light text-foreground/[0.06]">
+              Lucrări
+            </span>
+            <span className="h-1 w-1 rounded-full bg-accent/40" />
+            <span className="font-display text-lg md:text-xl lg:text-2xl font-light italic text-foreground/[0.08]">
+              Pictură
+            </span>
+            <span className="h-1 w-1 rounded-full bg-accent/40" />
+            <span className="font-display text-lg md:text-xl lg:text-2xl font-light text-foreground/[0.06]">
+              Ulei pe pânză
+            </span>
+            <span className="h-1 w-1 rounded-full bg-accent/40" />
+            <span className="font-display text-lg md:text-xl lg:text-2xl font-light italic text-foreground/[0.08]">
+              Simbol
+            </span>
+            <span className="h-1 w-1 rounded-full bg-accent/40" />
           </span>
         </Ticker>
       </div>
@@ -223,10 +242,29 @@ export default async function HomePage() {
       </section>
 
       {/* Footer ticker */}
-      <div className="border-y border-foreground/10 py-4">
-        <Ticker speed={35}>
-          <span className="font-mono text-[10px] tracking-[0.2em] text-foreground/20 uppercase mx-4">
-            Studio · Viena · Artă & Terapie · Pictură · Ulei · Acrilic · Workshop ·
+      <div className="border-y border-foreground/10 py-3 md:py-4">
+        <Ticker speed={40} pauseOnHover>
+          <span className="flex items-center gap-4 md:gap-8 px-2 md:px-4">
+            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.25em] text-foreground/20 uppercase">
+              Studio
+            </span>
+            <span className="h-px w-6 bg-foreground/10" />
+            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.25em] text-foreground/20 uppercase">
+              Viena
+            </span>
+            <span className="h-px w-6 bg-foreground/10" />
+            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.25em] text-foreground/20 uppercase">
+              Artă & Terapie
+            </span>
+            <span className="h-px w-6 bg-foreground/10" />
+            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.25em] text-foreground/20 uppercase">
+              Ulei pe pânză
+            </span>
+            <span className="h-px w-6 bg-foreground/10" />
+            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.25em] text-foreground/20 uppercase">
+              Workshop
+            </span>
+            <span className="h-px w-6 bg-foreground/10" />
           </span>
         </Ticker>
       </div>

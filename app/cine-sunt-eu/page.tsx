@@ -46,8 +46,8 @@ export default function CineSuntEuPage() {
           <div className="lg:col-span-5">
             <ImageReveal className="aspect-[3/4] bg-foreground/5">
               <Image
-                src="/studio-portrait.jpg"
-                alt="Atelier de pictură cu lumină naturală"
+                src="/Untitled design (1).jpg"
+                alt="Sara M. — portret de atelier"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"

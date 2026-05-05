@@ -73,21 +73,23 @@
     @apply border-border outline-ring/50;
   }
   html {
-    @apply bg-background;
+    @apply bg-background min-h-full;
   }
   body {
-    @apply text-foreground antialiased;
+    @apply text-foreground antialiased min-h-screen;
     font-feature-settings: "ss01", "cv11";
     background: linear-gradient(
       180deg,
       #0C0908 0%,
-      #0E0B0A 25%,
-      #0C0908 50%,
-      #0A0807 75%,
-      #0C0908 100%
+      #0E0B0A 20%,
+      #0C0908 40%,
+      #0A0807 60%,
+      #0C0908 80%,
+      #0E0B0A 100%
     );
     background-attachment: fixed;
-    background-size: 100% 200%;
+    background-size: 100% 100vh;
+    background-repeat: repeat-y;
   }
   ::selection {
     background: var(--accent);

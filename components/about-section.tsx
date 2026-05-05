@@ -64,26 +64,70 @@ export function AboutSection() {
               </h2>
             </Reveal>
 
-            {/* Image — dramatic portrait crop */}
-            <ImageReveal delay={0.2} className="aspect-[3/4] bg-foreground/5">
-              <Image
-                src="/Untitled design (1).jpg"
-                alt="Sara M. în atelier"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 60vw"
-              />
-              {/* Layered overlays for mood */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-background/20" />
-              <div className="absolute inset-0 bg-black/20" />
-              <div className="absolute inset-0 bg-foreground/[0.02] mix-blend-multiply" />
-              {/* Image caption */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/40">
-                  Atelier · Viena · 2024
-                </span>
+            {/* Image — gallery frame treatment */}
+            <Reveal delay={0.2}>
+              <div className="relative">
+                {/* Floating metadata — outside frame, overlapping */}
+                <div className="absolute -top-4 left-8 z-20 md:left-12">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/30">
+                    Portret de atelier · 2024
+                  </span>
+                </div>
+
+                {/* Accent bar beside image */}
+                <span
+                  aria-hidden
+                  className="absolute -left-3 top-0 bottom-0 w-px bg-accent/30 md:-left-4"
+                />
+
+                {/* Frame container */}
+                <div className="relative border border-foreground/10 bg-background/50 p-3 shadow-[0_24px_80px_-20px_rgba(0,0,0,0.6)] md:p-4">
+                  {/* Inner matte border */}
+                  <div className="relative aspect-[3/4] overflow-hidden border border-foreground/5">
+                    <Image
+                      src="/Untitled design (1).jpg"
+                      alt="Sara M. în atelier"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 60vw"
+                    />
+                    {/* Mood overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-background/15" />
+                    <div className="absolute inset-0 bg-black/15" />
+                    {/* Canvas weave texture */}
+                    <div
+                      className="pointer-events-none absolute inset-0 opacity-[0.03]"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1v1H0zm2 2h1v1H2z' fill='%23ffffff'/%3E%3C/svg%3E")`,
+                        backgroundRepeat: "repeat",
+                      }}
+                    />
+                  </div>
+
+                  {/* Corner catalog marks */}
+                  <div className="absolute top-5 left-5 md:top-6 md:left-6">
+                    <span className="font-mono text-[8px] tracking-[0.15em] text-foreground/25">
+                      01
+                    </span>
+                  </div>
+                  <div className="absolute bottom-5 right-5 md:bottom-6 md:right-6">
+                    <span className="font-mono text-[8px] tracking-[0.15em] text-foreground/25">
+                      SAR·VI·24
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bottom frame label */}
+                <div className="mt-4 flex items-center justify-between px-1">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/30">
+                    Ulei pe pânză · Atelier Viena
+                  </span>
+                  <span className="font-mono text-[9px] tracking-[0.1em] text-foreground/20">
+                    120 × 90 cm
+                  </span>
+                </div>
               </div>
-            </ImageReveal>
+            </Reveal>
 
             {/* Stats row */}
             <Reveal delay={0.3}>

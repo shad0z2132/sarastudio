@@ -102,6 +102,24 @@ export function AboutSection() {
                         backgroundRepeat: "repeat",
                       }}
                     />
+
+                    {/* Typography overlay — large watermark */}
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+                      <span
+                        className="select-none font-display text-[18vw] font-light italic leading-none tracking-[-0.02em] text-white/[0.04] mix-blend-overlay md:text-[14vw]"
+                        aria-hidden
+                      >
+                        PREZENȚĂ
+                      </span>
+                    </div>
+
+                    {/* Diagonal overlay stripe */}
+                    <div
+                      className="pointer-events-none absolute inset-0 opacity-[0.04]"
+                      style={{
+                        background: "linear-gradient(135deg, transparent 45%, #8B4513 45%, #8B4513 55%, transparent 55%)",
+                      }}
+                    />
                   </div>
 
                   {/* Corner catalog marks */}

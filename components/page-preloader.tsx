@@ -13,26 +13,14 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "motion/react"
 import { EASE_OUT_EXPO } from "@/lib/motion"
 
-const SESSION_KEY = "studio-preloaded"
 const MIN_DISPLAY_MS = 2800
 
 export function PagePreloader() {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(true)
   const [progress, setProgress] = useState(0)
   const [exiting, setExiting] = useState(false)
 
   useEffect(() => {
-    // Check if already preloaded this session
-    const alreadyLoaded = sessionStorage.getItem(SESSION_KEY)
-    if (alreadyLoaded) {
-      setShow(false)
-      return
-    }
-
-    setShow(true)
-
-    const start = Date.now()
-
     // Progress counter — accelerates toward end
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -53,7 +41,6 @@ export function PagePreloader() {
 
       setTimeout(() => {
         setExiting(true)
-        sessionStorage.setItem(SESSION_KEY, "1")
       }, 400)
     }, MIN_DISPLAY_MS)
 

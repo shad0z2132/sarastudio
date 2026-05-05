@@ -64,6 +64,8 @@ export function AboutSection() {
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
+              {/* Darkening overlay for mood */}
+              <div className="absolute inset-0 bg-black/30" />
               {/* Subtle grain overlay */}
               <div className="absolute inset-0 bg-foreground/[0.03] mix-blend-multiply" />
             </ImageReveal>

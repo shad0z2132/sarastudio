@@ -168,9 +168,4 @@
   display: none;
 }
 
-/* ── Custom cursor hide on interactive elements ─────────────────── */
-@media (hover: hover) and (pointer: fine) {
-  a, button, [data-cursor], .hoverable, [role="button"] {
-    cursor: none;
-  }
-}
+

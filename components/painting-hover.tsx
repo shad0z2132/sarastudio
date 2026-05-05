@@ -85,6 +85,17 @@ export function PaintingHover({
           background: `radial-gradient(ellipse at ${mouse.x}% ${mouse.y}%, transparent 30%, rgba(10,10,10,0.25) 100%)`,
         }}
       />
+
+      {/* Negative / inverted color effect on hover */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 transition-opacity duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)]"
+        style={{
+          opacity: isHovering ? 0.15 : 0,
+          background: 'white',
+          mixBlendMode: 'difference',
+        }}
+      />
     </div>
   )
 }

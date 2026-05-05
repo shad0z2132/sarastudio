@@ -20,6 +20,7 @@ import {
 import type { Artwork, GalleryFilter } from "@/lib/types"
 import { EASE_OUT_EXPO, DURATION } from "@/lib/motion"
 import { GalleryLightbox } from "./gallery-lightbox"
+import { PaintingHover } from "@/components/painting-hover"
 
 type Props = {
   artworks: Artwork[]
@@ -234,51 +235,53 @@ function GalleryTile({
   return (
     <div className="group">
       {/* Image frame — click opens lightbox */}
-      <button
-        onClick={onOpenLightbox}
-        data-cursor="view"
-        className="relative block w-full cursor-none overflow-hidden bg-foreground/[0.03] text-left transition-all duration-[1400ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.6)] focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-      >
-        <div className={aspectClass}>
-          <Image
-            src={artwork.image.url}
-            alt={artwork.image.alt}
-            fill
-            sizes={
-              size === "featured"
-                ? "(min-width: 1024px) 50vw, 100vw"
-                : size === "wide"
+      <PaintingHover className="w-full">
+        <button
+          onClick={onOpenLightbox}
+          data-cursor="view"
+          className="relative block w-full overflow-hidden bg-foreground/[0.03] text-left transition-all duration-[1400ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.6)] focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+        >
+          <div className={aspectClass}>
+            <Image
+              src={artwork.image.url}
+              alt={artwork.image.alt}
+              fill
+              sizes={
+                size === "featured"
                   ? "(min-width: 1024px) 50vw, 100vw"
-                  : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            }
-            placeholder="blur"
-            blurDataURL={artwork.image.lqip}
-            priority={priority}
-            className="object-cover object-center saturate-[0.65] brightness-[0.92] transition-all duration-[1400ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.04] group-hover:saturate-100 group-hover:brightness-100"
-          />
-        </div>
+                  : size === "wide"
+                    ? "(min-width: 1024px) 50vw, 100vw"
+                    : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+              }
+              placeholder="blur"
+              blurDataURL={artwork.image.lqip}
+              priority={priority}
+              className="object-cover object-center saturate-[0.65] brightness-[0.92] transition-all duration-[1400ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.04] group-hover:saturate-100 group-hover:brightness-100"
+            />
+          </div>
 
-        {/* Status badge */}
-        {status && !isAvailable && (
-          <span
-            className={`
-              absolute top-4 right-4 z-10 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.15em] backdrop-blur-sm
-              ${status === "sold" ? "bg-foreground/90 text-background" : ""}
-              ${status === "reserved" ? "bg-accent text-foreground" : ""}
-              ${status === "nfs" ? "bg-foreground/10 text-foreground/50 border border-foreground/10" : ""}
-            `}
-          >
-            {STATUS[status]}
-          </span>
-        )}
+          {/* Status badge */}
+          {status && !isAvailable && (
+            <span
+              className={`
+                absolute top-4 right-4 z-10 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.15em] backdrop-blur-sm
+                ${status === "sold" ? "bg-foreground/90 text-background" : ""}
+                ${status === "reserved" ? "bg-accent text-foreground" : ""}
+                ${status === "nfs" ? "bg-foreground/10 text-foreground/50 border border-foreground/10" : ""}
+              `}
+            >
+              {STATUS[status]}
+            </span>
+          )}
 
-        {/* Hover overlay */}
-        <div className="pointer-events-none absolute inset-0 flex items-end justify-start bg-gradient-to-t from-background/70 via-background/5 to-transparent opacity-0 transition-opacity duration-[1000ms] group-hover:opacity-100">
-          <span className="m-6 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/80 mix-blend-difference">
-            Vezi detalii →
-          </span>
-        </div>
-      </button>
+          {/* Hover overlay */}
+          <div className="pointer-events-none absolute inset-0 flex items-end justify-start bg-gradient-to-t from-background/70 via-background/5 to-transparent opacity-0 transition-opacity duration-[1000ms] group-hover:opacity-100">
+            <span className="m-6 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/80 mix-blend-difference">
+              Vezi detalii →
+            </span>
+          </div>
+        </button>
+      </PaintingHover>
 
       {/* Wall label — links to detail page */}
       <Link

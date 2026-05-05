@@ -1,13 +1,18 @@
 import Link from "next/link"
 import Image from "next/image"
 import type { Artwork } from "@/lib/types"
+import { PaintingHover } from "@/components/painting-hover"
 
 /**
  * Home-page featured artwork — gallery-wall plate treatment.
- * - Roman numeral plate, always-visible caption, status badge.
- * - Smooth, layered hover: image saturates + scales, plate line extends,
- *   roman numeral lifts in accent, caption row underlines, soft umber
- *   inner glow blooms from the bottom of the image.
+ *
+ * Smooth, layered hover:
+ *   • Card lifts with soft shadow
+ *   • Image scales 1.03x with full saturation + brightness
+ *   • Plate accent line extends
+ *   • Roman numeral lifts in accent
+ *   • Umber inner glow from bottom
+ *   • Title underline reveal
  */
 
 const ROMAN = ["I", "II", "III", "IV", "V"] as const
@@ -26,25 +31,21 @@ type Props = {
 }
 
 export function FeaturedArtwork({ artwork, index, priority = false }: Props) {
-  /* Staggered aspect ratios create a more editorial, less grid-ish feel. */
   const aspect =
     index === 0 ? "aspect-[4/5]" : index === 1 ? "aspect-[3/5]" : "aspect-[4/6]"
-  /* Column offsets (desktop only) — second plate drops, third rises slightly. */
   const offset =
     index === 1 ? "lg:mt-24" : index === 2 ? "lg:mt-12" : "lg:mt-0"
-
-  const ease = "cubic-bezier(0.19,1,0.22,1)"
 
   return (
     <Link
       href={`/galerie/${artwork.slug}`}
       data-cursor="view"
       className={
-        "group flex flex-col gap-6 focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-foreground " +
+        "group flex flex-col gap-6 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent " +
         offset
       }
     >
-      {/* Plate header — roman numeral + category. Bottom border extends across full width on hover. */}
+      {/* Plate header */}
       <header className="relative flex items-baseline justify-between pb-3">
         <span
           aria-hidden
@@ -52,64 +53,52 @@ export function FeaturedArtwork({ artwork, index, priority = false }: Props) {
         />
         <span
           aria-hidden
-          className="absolute bottom-0 left-0 h-px w-1/4 origin-left scale-x-0 bg-accent transition-transform duration-[900ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:w-full group-hover:scale-x-100"
+          className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-[900ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:w-full"
         />
-        <span
-          className="font-display text-2xl font-light italic text-accent transition-all duration-[900ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-0.5 group-hover:tracking-[0.05em] md:text-3xl"
-          style={{ willChange: "transform, letter-spacing" }}
-        >
+        <span className="font-display text-2xl font-light italic text-accent transition-all duration-[900ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-0.5 group-hover:tracking-[0.05em] md:text-3xl">
           {ROMAN[index] ?? String(index + 1)}
         </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/50 transition-colors duration-[900ms] ease-out group-hover:text-foreground/80">
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/50 transition-colors duration-[900ms] group-hover:text-foreground/80">
           {artwork.category}
         </span>
       </header>
 
-      {/* Image frame — lifts subtly, scales image, saturates, blooms umber from below. */}
-      <div
-        className={
-          "relative w-full overflow-hidden bg-surface transition-transform duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-1 " +
-          aspect
-        }
-        style={{ willChange: "transform" }}
-      >
-        <Image
-          src={artwork.image.url}
-          alt={artwork.image.alt}
-          fill
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          placeholder="blur"
-          blurDataURL={artwork.image.lqip}
-          priority={priority}
-          style={{
-            transitionTimingFunction: ease,
-            transitionDuration: "1400ms",
-            transitionProperty: "filter, transform",
-            willChange: "filter, transform",
-            transform: "translateZ(0)",
-          }}
-          className="object-cover object-center saturate-[0.65] brightness-[0.92] transition-all duration-[1400ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.04] group-hover:saturate-100 group-hover:brightness-100"
-        />
+      {/* Image frame with painting hover effect */}
+      <PaintingHover className={aspect}>
+        <div
+          className={
+            "relative w-full h-full overflow-hidden bg-surface transition-all duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-2 group-hover:shadow-[0_32px_80px_-24px_rgba(0,0,0,0.5)]"
+          }
+        >
+          <Image
+            src={artwork.image.url}
+            alt={artwork.image.alt}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            placeholder="blur"
+            blurDataURL={artwork.image.lqip}
+            priority={priority}
+            className="object-cover object-center saturate-[0.7] brightness-[0.9] transition-all duration-[1400ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.03] group-hover:saturate-100 group-hover:brightness-100"
+          />
 
-        {/* Soft umber bloom from below — appears on hover */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-accent/25 via-accent/5 to-transparent opacity-0 transition-opacity duration-[1200ms] ease-out group-hover:opacity-100"
-        />
+          {/* Umber bloom from bottom */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-accent/20 via-accent/5 to-transparent opacity-0 transition-opacity duration-[1200ms] group-hover:opacity-100"
+          />
 
-        {/* Edge vignette tightens on hover */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-foreground/0 transition-[box-shadow,ring-color] duration-[1200ms] ease-out group-hover:ring-accent/30"
-        />
-      </div>
+          {/* Accent ring on hover */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-accent/0 transition-all duration-[1200ms] group-hover:ring-accent/25"
+          />
+        </div>
+      </PaintingHover>
 
-      {/* Gallery wall label — always visible */}
+      {/* Caption */}
       <figcaption className="flex flex-col gap-3 pt-1">
         <div className="flex items-end justify-between gap-6">
-          <h3
-            className="font-display text-2xl font-light italic leading-[1.1] text-foreground text-balance transition-colors duration-[900ms] ease-out group-hover:text-accent md:text-3xl"
-          >
+          <h3 className="font-display text-2xl font-light italic leading-[1.1] text-foreground text-balance transition-colors duration-[900ms] group-hover:text-accent md:text-3xl">
             <span className="relative inline-block">
               {artwork.title}
               <span
@@ -118,7 +107,7 @@ export function FeaturedArtwork({ artwork, index, priority = false }: Props) {
               />
             </span>
           </h3>
-          <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground transition-colors duration-[900ms] ease-out group-hover:text-foreground">
+          <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground transition-colors duration-[900ms] group-hover:text-foreground">
             {artwork.year}
           </span>
         </div>
@@ -132,7 +121,7 @@ export function FeaturedArtwork({ artwork, index, priority = false }: Props) {
             <span
               aria-hidden
               className={
-                "inline-block h-1.5 w-1.5 rounded-full transition-transform duration-[900ms] ease-out group-hover:scale-150 " +
+                "inline-block h-1.5 w-1.5 rounded-full transition-transform duration-[900ms] group-hover:scale-150 " +
                 (artwork.price.status === "available"
                   ? "bg-accent"
                   : "bg-foreground/30")
@@ -143,7 +132,7 @@ export function FeaturedArtwork({ artwork, index, priority = false }: Props) {
             </span>
             <span
               aria-hidden
-              className="ml-auto font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/0 transition-colors duration-[900ms] ease-out group-hover:text-accent"
+              className="ml-auto font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/0 transition-colors duration-[900ms] group-hover:text-accent"
             >
               Vezi lucrarea →
             </span>

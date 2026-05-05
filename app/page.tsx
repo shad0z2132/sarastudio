@@ -36,41 +36,69 @@ export default async function HomePage() {
       <Hero />
 
       {/* 02 — INVITAȚIE */}
-      <section className="relative bg-gradient-to-b from-background via-[#0E0B0A] to-background px-6 py-32 md:px-16 md:py-48 lg:px-32">
+      <section className="relative overflow-hidden px-6 py-32 md:px-16 md:py-48 lg:px-32">
         <span
           aria-hidden
           className="absolute inset-x-6 top-0 h-px bg-foreground/10 md:inset-x-16 lg:inset-x-32"
         />
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-          <Reveal as="div" className="flex flex-col gap-4 md:col-span-3">
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-foreground/60">
-              02 — Invitație
-            </span>
-            <span
-              aria-hidden
-              className="hidden h-px w-12 bg-accent md:inline-block"
-            />
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/40">
-              Atelier · Viena
-            </span>
-          </Reveal>
-
-          <div className="flex flex-col gap-10 md:col-span-9">
-            <Reveal delay={0.15}>
-              <p className="font-display text-3xl font-light leading-[1.2] text-foreground text-balance md:text-[3.25rem] md:leading-[1.1]">
-                Nu pictez ca să decorez un perete.{" "}
-                <span className="italic text-muted-foreground">
-                  Pictez ca să dau chip lucrurilor care, altfel, ar rămâne
-                  neauzite.
+        <div className="mx-auto max-w-[1400px]">
+          {/* Top label row */}
+          <div className="mb-16 md:mb-24">
+            <Reveal>
+              <div className="flex items-center gap-5">
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-foreground/50">
+                  02 — Invitație
                 </span>
-              </p>
+                <span aria-hidden className="h-px w-12 bg-accent/50" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/30">
+                  Atelier · Viena
+                </span>
+              </div>
             </Reveal>
-            <Reveal delay={0.35}>
-              <p className="max-w-[52ch] font-sans text-base leading-relaxed text-muted-foreground md:text-lg">
-                Dacă ai ajuns aici, probabil cauți același lucru: o imagine
-                care să spună în locul tău ceea ce încă nu știi să spui.
-              </p>
-            </Reveal>
+          </div>
+
+          {/* Main quote */}
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-1">
+              <Reveal>
+                <span
+                  aria-hidden
+                  className="block font-display text-[80px] font-light leading-none text-accent/15 md:text-[120px]"
+                >
+                  „
+                </span>
+              </Reveal>
+            </div>
+
+            <div className="lg:col-span-10">
+              <Reveal delay={0.1}>
+                <blockquote className="font-display text-[clamp(2rem,5vw,5rem)] font-light leading-[1.05] tracking-[-0.02em] text-foreground">
+                  Nu pictez ca să decorez un perete.{" "}
+                  <span className="italic text-foreground/50">
+                    Pictez ca să dau chip lucrurilor care, altfel, ar rămâne
+                    neauzite.
+                  </span>
+                </blockquote>
+              </Reveal>
+
+              <Reveal delay={0.3}>
+                <div className="mt-12 max-w-xl">
+                  <p className="text-base leading-relaxed text-foreground/40 md:text-lg">
+                    Dacă ai ajuns aici, probabil cauți același lucru: o imagine
+                    care să spună în locul tău ceea ce încă nu știi să spui.
+                  </p>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.4}>
+                <div className="mt-10 flex items-center gap-4">
+                  <span className="h-px w-16 bg-accent/40" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/30">
+                    Sara
+                  </span>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
@@ -87,29 +115,33 @@ export default async function HomePage() {
       </div>
 
       {/* Ticker between manifest and gallery */}
-      <div className="border-y border-foreground/10 py-4 md:py-5">
-        <Ticker speed={30} pauseOnHover>
-          <span className="flex items-center gap-6 md:gap-10 px-3 md:px-5">
-            <span className="font-display text-lg md:text-xl lg:text-2xl font-light italic text-foreground/[0.08]">
+      <div className="border-y border-foreground/10 overflow-hidden">
+        <Ticker speed={25} pauseOnHover>
+          <span className="flex items-center px-4 md:px-8">
+            <span className="font-display text-[clamp(2rem,5vw,4rem)] font-light italic text-foreground/[0.10] whitespace-nowrap">
               Galerie
             </span>
-            <span className="h-1 w-1 rounded-full bg-accent/40" />
-            <span className="font-display text-lg md:text-xl lg:text-2xl font-light text-foreground/[0.06]">
+            <span className="mx-6 md:mx-10 h-2 w-2 rotate-45 bg-accent/30" />
+            <span className="font-display text-[clamp(2rem,5vw,4rem)] font-light text-foreground/[0.08] whitespace-nowrap">
               Lucrări
             </span>
-            <span className="h-1 w-1 rounded-full bg-accent/40" />
-            <span className="font-display text-lg md:text-xl lg:text-2xl font-light italic text-foreground/[0.08]">
+            <span className="mx-6 md:mx-10 h-2 w-2 rotate-45 bg-accent/30" />
+            <span className="font-display text-[clamp(2rem,5vw,4rem)] font-light italic text-foreground/[0.10] whitespace-nowrap">
               Pictură
             </span>
-            <span className="h-1 w-1 rounded-full bg-accent/40" />
-            <span className="font-display text-lg md:text-xl lg:text-2xl font-light text-foreground/[0.06]">
+            <span className="mx-6 md:mx-10 h-2 w-2 rotate-45 bg-accent/30" />
+            <span className="font-display text-[clamp(2rem,5vw,4rem)] font-light text-foreground/[0.08] whitespace-nowrap">
               Ulei pe pânză
             </span>
-            <span className="h-1 w-1 rounded-full bg-accent/40" />
-            <span className="font-display text-lg md:text-xl lg:text-2xl font-light italic text-foreground/[0.08]">
+            <span className="mx-6 md:mx-10 h-2 w-2 rotate-45 bg-accent/30" />
+            <span className="font-display text-[clamp(2rem,5vw,4rem)] font-light italic text-foreground/[0.10] whitespace-nowrap">
               Simbol
             </span>
-            <span className="h-1 w-1 rounded-full bg-accent/40" />
+            <span className="mx-6 md:mx-10 h-2 w-2 rotate-45 bg-accent/30" />
+            <span className="font-display text-[clamp(2rem,5vw,4rem)] font-light text-foreground/[0.08] whitespace-nowrap">
+              Arhetip
+            </span>
+            <span className="mx-6 md:mx-10 h-2 w-2 rotate-45 bg-accent/30" />
           </span>
         </Ticker>
       </div>
@@ -242,29 +274,33 @@ export default async function HomePage() {
       </section>
 
       {/* Footer ticker */}
-      <div className="border-y border-foreground/10 py-3 md:py-4">
-        <Ticker speed={40} pauseOnHover>
-          <span className="flex items-center gap-4 md:gap-8 px-2 md:px-4">
-            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.25em] text-foreground/20 uppercase">
+      <div className="border-y border-foreground/10 overflow-hidden">
+        <Ticker speed={35} pauseOnHover direction="right">
+          <span className="flex items-center px-4 md:px-8">
+            <span className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-foreground/15 uppercase whitespace-nowrap">
               Studio
             </span>
-            <span className="h-px w-6 bg-foreground/10" />
-            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.25em] text-foreground/20 uppercase">
+            <span className="mx-5 md:mx-8 text-foreground/10">✦</span>
+            <span className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-foreground/15 uppercase whitespace-nowrap">
               Viena
             </span>
-            <span className="h-px w-6 bg-foreground/10" />
-            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.25em] text-foreground/20 uppercase">
+            <span className="mx-5 md:mx-8 text-foreground/10">✦</span>
+            <span className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-foreground/15 uppercase whitespace-nowrap">
               Artă & Terapie
             </span>
-            <span className="h-px w-6 bg-foreground/10" />
-            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.25em] text-foreground/20 uppercase">
+            <span className="mx-5 md:mx-8 text-foreground/10">✦</span>
+            <span className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-foreground/15 uppercase whitespace-nowrap">
               Ulei pe pânză
             </span>
-            <span className="h-px w-6 bg-foreground/10" />
-            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.25em] text-foreground/20 uppercase">
+            <span className="mx-5 md:mx-8 text-foreground/10">✦</span>
+            <span className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-foreground/15 uppercase whitespace-nowrap">
               Workshop
             </span>
-            <span className="h-px w-6 bg-foreground/10" />
+            <span className="mx-5 md:mx-8 text-foreground/10">✦</span>
+            <span className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-foreground/15 uppercase whitespace-nowrap">
+              Atelier
+            </span>
+            <span className="mx-5 md:mx-8 text-foreground/10">✦</span>
           </span>
         </Ticker>
       </div>

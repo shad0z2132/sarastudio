@@ -6,6 +6,7 @@ import { ShadowCurtain } from "@/components/shadow-curtain"
 import { CustomCursor } from "@/components/custom-cursor"
 import { ScrollPercentage } from "@/components/scroll-percentage"
 import { SmoothScroll } from "@/components/smooth-scroll"
+import { PageTransition } from "@/components/page-transition"
 import "./globals.css"
 
 const geist = Geist({
@@ -55,7 +56,9 @@ export default function RootLayout({
         <ShadowCurtain />
         <CustomCursor />
         <ScrollPercentage />
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <PageTransition>{children}</PageTransition>
+        </SmoothScroll>
         <NoiseOverlay />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>

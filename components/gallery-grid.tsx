@@ -19,6 +19,7 @@ import {
 } from "motion/react"
 import type { Artwork, GalleryFilter } from "@/lib/types"
 import { EASE_OUT_EXPO, DURATION } from "@/lib/motion"
+import { GalleryLightbox } from "./gallery-lightbox"
 
 type Props = {
   artworks: Artwork[]
@@ -41,6 +42,7 @@ const STATUS: Record<string, string> = {
 export function GalleryGrid({ artworks, initialFilter = "toate" }: Props) {
   const [filter, setFilter] = useState<GalleryFilter>(initialFilter)
   const [isPending, startTransition] = useTransition()
+  const [lightboxArtwork, setLightboxArtwork] = useState<Artwork | null>(null)
   const gridRef = useRef<HTMLDivElement>(null)
   const inView = useInView(gridRef, { amount: 0.05, once: true })
 
@@ -121,6 +123,7 @@ export function GalleryGrid({ artworks, initialFilter = "toate" }: Props) {
                         size={
                           isFeatured ? "featured" : isWide ? "wide" : isTall ? "tall" : "standard"
                         }
+                        onOpenLightbox={() => setLightboxArtwork(artwork)}
                       />
                     </motion.li>
                   )
@@ -129,6 +132,12 @@ export function GalleryGrid({ artworks, initialFilter = "toate" }: Props) {
             </motion.ul>
           </LayoutGroup>
         )}
+
+        <GalleryLightbox
+          artwork={lightboxArtwork}
+          isOpen={!!lightboxArtwork}
+          onClose={() => setLightboxArtwork(null)}
+        />
       </div>
     </MotionConfig>
   )
@@ -196,10 +205,12 @@ function GalleryTile({
   artwork,
   priority,
   size,
+  onOpenLightbox,
 }: {
   artwork: Artwork
   priority: boolean
   size: TileSize
+  onOpenLightbox: () => void
 }) {
   const status = artwork.price?.status
   const isAvailable = status === "available"
@@ -221,30 +232,31 @@ function GalleryTile({
   }
 
   return (
-    <Link
-      href={`/galerie/${artwork.slug}`}
-      className="group block focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-    >
-      {/* Image frame */}
-      <div
-        className={`relative w-full overflow-hidden ${aspectClass} bg-foreground/[0.03] transition-all duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-1.5 group-hover:shadow-[0_24px_60px_-12px_rgba(0,0,0,0.5)]`}
+    <div className="group">
+      {/* Image frame — click opens lightbox */}
+      <button
+        onClick={onOpenLightbox}
+        data-cursor="view"
+        className="relative block w-full cursor-none overflow-hidden bg-foreground/[0.03] text-left transition-all duration-[1400ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.6)] focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
       >
-        <Image
-          src={artwork.image.url}
-          alt={artwork.image.alt}
-          fill
-          sizes={
-            size === "featured"
-              ? "(min-width: 1024px) 50vw, 100vw"
-              : size === "wide"
+        <div className={aspectClass}>
+          <Image
+            src={artwork.image.url}
+            alt={artwork.image.alt}
+            fill
+            sizes={
+              size === "featured"
                 ? "(min-width: 1024px) 50vw, 100vw"
-                : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          }
-          placeholder="blur"
-          blurDataURL={artwork.image.lqip}
-          priority={priority}
-          className="object-cover object-center saturate-[0.82] transition-all duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.03] group-hover:saturate-100"
-        />
+                : size === "wide"
+                  ? "(min-width: 1024px) 50vw, 100vw"
+                  : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            }
+            placeholder="blur"
+            blurDataURL={artwork.image.lqip}
+            priority={priority}
+            className="object-cover object-center saturate-[0.65] brightness-[0.92] transition-all duration-[1400ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.04] group-hover:saturate-100 group-hover:brightness-100"
+          />
+        </div>
 
         {/* Status badge */}
         {status && !isAvailable && (
@@ -261,15 +273,18 @@ function GalleryTile({
         )}
 
         {/* Hover overlay */}
-        <div className="pointer-events-none absolute inset-0 flex items-end justify-start bg-gradient-to-t from-background/80 via-background/10 to-transparent opacity-0 transition-opacity duration-[800ms] group-hover:opacity-100">
-          <span className="m-6 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70">
+        <div className="pointer-events-none absolute inset-0 flex items-end justify-start bg-gradient-to-t from-background/70 via-background/5 to-transparent opacity-0 transition-opacity duration-[1000ms] group-hover:opacity-100">
+          <span className="m-6 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/80 mix-blend-difference">
             Vezi detalii →
           </span>
         </div>
-      </div>
+      </button>
 
-      {/* Wall label */}
-      <div className="mt-5 flex flex-col gap-2.5">
+      {/* Wall label — links to detail page */}
+      <Link
+        href={`/galerie/${artwork.slug}`}
+        className="mt-5 flex flex-col gap-2.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+      >
         {/* Title row */}
         <div className="flex items-baseline justify-between gap-4">
           <h3 className="font-display text-xl font-light leading-tight text-foreground transition-colors duration-700 group-hover:text-accent md:text-2xl">
@@ -299,8 +314,8 @@ function GalleryTile({
             </>
           )}
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
 

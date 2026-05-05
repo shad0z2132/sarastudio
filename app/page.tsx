@@ -10,6 +10,8 @@ import { ReflectionsList } from "@/components/reflections-list"
 import { Reveal } from "@/components/reveal"
 import { Ticker } from "@/components/ticker"
 import { AboutSection } from "@/components/about-section"
+import { HorizontalArtworkStrip } from "@/components/horizontal-artwork-strip"
+import { BackgroundTypography } from "@/components/background-typography"
 import { getArtworks, getReflections } from "@/lib/cms"
 
 export const metadata = {
@@ -74,7 +76,10 @@ export default async function HomePage() {
       </section>
 
       {/* 02b — ABOUT */}
-      <AboutSection />
+      <section className="relative overflow-hidden">
+        <BackgroundTypography text="UMBRĂ" />
+        <AboutSection />
+      </section>
 
       {/* 03 — MANIFEST */}
       <Manifest />
@@ -145,8 +150,14 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* 04b — HORIZONTAL STRIP */}
+      <HorizontalArtworkStrip artworks={artworks.slice(0, 6)} />
+
       {/* 05 — PRACTICĂ */}
-      <Pillars />
+      <section className="relative overflow-hidden">
+        <BackgroundTypography text="SIMBOL" className="top-1/4" />
+        <Pillars />
+      </section>
 
       {/* 06 — WORKSHOP CTA */}
       <WorkshopCTA />

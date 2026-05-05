@@ -38,6 +38,7 @@ export function FeaturedArtwork({ artwork, index, priority = false }: Props) {
   return (
     <Link
       href={`/galerie/${artwork.slug}`}
+      data-cursor="view"
       className={
         "group flex flex-col gap-6 focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-foreground " +
         offset
@@ -82,12 +83,12 @@ export function FeaturedArtwork({ artwork, index, priority = false }: Props) {
           priority={priority}
           style={{
             transitionTimingFunction: ease,
-            transitionDuration: "1200ms",
+            transitionDuration: "1400ms",
             transitionProperty: "filter, transform",
             willChange: "filter, transform",
             transform: "translateZ(0)",
           }}
-          className="object-cover object-center saturate-[0.85] transition-transform duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.04] group-hover:saturate-100"
+          className="object-cover object-center saturate-[0.65] brightness-[0.92] transition-all duration-[1400ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.04] group-hover:saturate-100 group-hover:brightness-100"
         />
 
         {/* Soft umber bloom from below — appears on hover */}

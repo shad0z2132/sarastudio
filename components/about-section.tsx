@@ -8,6 +8,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Reveal } from "./reveal"
+import { ImageReveal } from "./image-reveal"
 
 export function AboutSection() {
   return (
@@ -54,8 +55,8 @@ export function AboutSection() {
         {/* Content grid: image + text */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Image — left side */}
-          <Reveal as="div" delay={0.25} className="lg:col-span-6">
-            <div className="relative aspect-square overflow-hidden bg-foreground/5">
+          <div className="lg:col-span-6">
+            <ImageReveal delay={0.25} className="aspect-square bg-foreground/5">
               <Image
                 src="/studio-portrait.jpg"
                 alt="Atelier de pictură în Viena"
@@ -65,8 +66,8 @@ export function AboutSection() {
               />
               {/* Subtle grain overlay */}
               <div className="absolute inset-0 bg-foreground/[0.03] mix-blend-multiply" />
-            </div>
-          </Reveal>
+            </ImageReveal>
+          </div>
 
           {/* Text block — right side */}
           <div className="lg:col-span-5 lg:col-start-8 flex flex-col justify-between">

@@ -112,7 +112,7 @@ export function StickyAbout() {
             <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-transparent" />
           </div>
           <div>
-            <p className="text-sm font-medium text-foreground">Sara M.</p>
+            <p className="text-sm font-medium text-foreground">Sara</p>
             <p className="font-mono text-[9px] tracking-[0.1em] text-foreground/40 uppercase">
               Artistă & Terapeut
             </p>

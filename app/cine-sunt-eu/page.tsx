@@ -47,7 +47,7 @@ export default function CineSuntEuPage() {
             <ImageReveal className="aspect-[3/4] bg-foreground/5">
               <Image
                 src="/Untitled design (1).jpg"
-                alt="Sara M. — portret de atelier"
+                alt="Sara — portret de atelier"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"

@@ -74,7 +74,7 @@ export function SiteFooter() {
             <div className="mt-4 flex items-center gap-3">
               <span className="h-px w-8 bg-accent/30" />
               <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/30">
-                Sara M.
+                Sara
               </span>
             </div>
           </motion.div>

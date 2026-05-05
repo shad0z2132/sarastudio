@@ -86,7 +86,7 @@ export function AboutSection() {
                   <div className="relative aspect-[3/4] overflow-hidden border border-foreground/5">
                     <Image
                       src="/Untitled design (1).jpg"
-                      alt="Sara M. în atelier"
+                      alt="Sara în atelier"
                       fill
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 60vw"
@@ -205,7 +205,7 @@ export function AboutSection() {
                 <div className="w-14 h-14 rounded-full overflow-hidden relative shrink-0 border border-foreground/10">
                   <Image
                     src="/Untitled design.jpg"
-                    alt="Sara M."
+                    alt="Sara"
                     fill
                     className="object-cover"
                     sizes="56px"
@@ -213,7 +213,7 @@ export function AboutSection() {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-foreground">
-                    Sara M.
+                    Sara
                   </p>
                   <p className="font-mono text-[9px] tracking-[0.1em] text-foreground/40 uppercase">
                     Artistă & Terapeut prin artă
@@ -264,7 +264,7 @@ export function AboutSection() {
             <div className="mt-10 flex items-center justify-center gap-4">
               <span className="h-px w-8 bg-accent/40" />
               <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/40">
-                Sara M.
+                Sara
               </span>
               <span className="h-px w-8 bg-accent/40" />
             </div>

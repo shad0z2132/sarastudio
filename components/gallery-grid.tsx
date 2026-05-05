@@ -235,7 +235,7 @@ function GalleryTile({
   return (
     <div className="group">
       {/* Image frame — click opens lightbox */}
-      <PaintingHover className="w-full">
+      <PaintingHover className="w-full" imageSrc={artwork.image.url}>
         <button
           onClick={onOpenLightbox}
           data-cursor="view"

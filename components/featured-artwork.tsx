@@ -64,7 +64,7 @@ export function FeaturedArtwork({ artwork, index, priority = false }: Props) {
       </header>
 
       {/* Image frame with painting hover effect */}
-      <PaintingHover className={aspect}>
+      <PaintingHover className={aspect} imageSrc={artwork.image.url}>
         <div
           className={
             "relative w-full h-full overflow-hidden bg-surface transition-all duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-2 group-hover:shadow-[0_32px_80px_-24px_rgba(0,0,0,0.5)]"

@@ -1,39 +1,16 @@
 "use client"
 
 /**
- * CustomCursor — state-aware cinematic cursor.
+ * CustomCursor — elegant triangle cursor.
  *
- * States:
- *   • default   — small dot + ring
- *   • view      — expanded circle with "View" label (gallery images)
- *   • close     — expanded circle with "×" (lightbox)
- *   • drag      — expanded circle with "← →" (horizontal scroll)
- *
- * Hovering interactive elements (a, button, [data-cursor]) triggers state.
- * Hidden on touch devices. Native cursor remains visible for accessibility.
+ * A minimal triangle pointer that follows the mouse with spring physics.
+ * Hidden on touch devices. Mix-blend-difference for contrast.
  */
 
 import { useEffect, useState } from "react"
 import { motion, useMotionValue, useSpring } from "motion/react"
 
-type CursorState = "default" | "view" | "close" | "drag"
-
-const LABELS: Record<CursorState, string | null> = {
-  default: null,
-  view: "View",
-  close: "×",
-  drag: "← →",
-}
-
-const SIZES: Record<CursorState, number> = {
-  default: 40,
-  view: 96,
-  close: 72,
-  drag: 88,
-}
-
 export function CustomCursor() {
-  const [state, setState] = useState<CursorState>("default")
   const [isVisible, setIsVisible] = useState(false)
   const [isTouch, setIsTouch] = useState(true)
 
@@ -56,42 +33,22 @@ export function CustomCursor() {
       setIsVisible(true)
     }
 
-    const handleOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
-      const hoverable = target.closest(
-        "a, button, [data-cursor], .hoverable, [role='button'], input, textarea, select"
-      )
-
-      if (hoverable) {
-        const dataCursor = hoverable.getAttribute("data-cursor") as CursorState | null
-        setState(dataCursor ?? "default")
-      } else {
-        setState("default")
-      }
-    }
-
     const handleLeave = () => setIsVisible(false)
 
     window.addEventListener("mousemove", moveCursor)
-    document.addEventListener("mouseover", handleOver)
     document.addEventListener("mouseleave", handleLeave)
 
     return () => {
       window.removeEventListener("mousemove", moveCursor)
-      document.removeEventListener("mouseover", handleOver)
       document.removeEventListener("mouseleave", handleLeave)
     }
   }, [cursorX, cursorY])
 
   if (isTouch) return null
 
-  const size = SIZES[state]
-  const label = LABELS[state]
-  const isActive = state !== "default"
-
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[9999] hidden lg:flex items-center justify-center mix-blend-difference"
+      className="fixed top-0 left-0 pointer-events-none z-[9999] hidden lg:block"
       style={{
         x: cursorXSpring,
         y: cursorYSpring,
@@ -99,53 +56,32 @@ export function CustomCursor() {
         translateY: "-50%",
       }}
     >
-      {/* Outer ring */}
+      {/* Triangle cursor */}
       <motion.div
-        className="absolute rounded-full border border-white/30"
         animate={{
-          width: size,
-          height: size,
           opacity: isVisible ? 1 : 0,
+          scale: isVisible ? 1 : 0.5,
         }}
-        transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-      />
-
-      {/* Solid fill for active states */}
-      <motion.div
-        className="absolute rounded-full bg-white"
-        animate={{
-          width: isActive ? size - 2 : 0,
-          height: isActive ? size - 2 : 0,
-          opacity: isActive && isVisible ? 1 : 0,
-        }}
-        transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-      />
-
-      {/* Inner dot (default state) */}
-      <motion.div
-        className="absolute rounded-full bg-white"
-        animate={{
-          width: isActive ? 0 : 5,
-          height: isActive ? 0 : 5,
-          opacity: isVisible ? 1 : 0,
-        }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      />
-
-      {/* Label */}
-      {label && (
-        <motion.span
-          className="relative z-10 font-mono text-[10px] uppercase tracking-[0.15em] text-black"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{
-            opacity: isActive && isVisible ? 1 : 0,
-            scale: isActive && isVisible ? 1 : 0.8,
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="relative"
+      >
+        {/* Main triangle shape */}
+        <div
+          className="w-3 h-3 bg-white"
+          style={{
+            clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+            transform: "rotate(-45deg)",
           }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        >
-          {label}
-        </motion.span>
-      )}
+        />
+        {/* Subtle glow */}
+        <div
+          className="absolute inset-0 -z-10 scale-150 blur-sm bg-white/20"
+          style={{
+            clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+            transform: "rotate(-45deg)",
+          }}
+        />
+      </motion.div>
     </motion.div>
   )
 }

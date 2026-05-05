@@ -2,8 +2,11 @@
 
 /**
  * Ticker — infinite horizontal marquee.
- * Exact Boyd pattern: duplicate content, CSS translateX(-100%) animation.
+ * Exact Boyd pattern: duplicate content, CSS translateX(-50%) animation.
  * Used for section transitions and footer branding.
+ *
+ * Mobile fix: removed `will-change-transform` which forced compositor
+ * layer promotion and caused scroll jank on touch devices.
  */
 
 import { cn } from "@/lib/utils"
@@ -35,7 +38,7 @@ export function Ticker({
     >
       <div
         className={cn(
-          "inline-flex will-change-transform",
+          "inline-flex motion-safe:[animation-play-state:running] motion-reduce:[animation-play-state:paused]",
           pauseOnHover && "group-hover:[animation-play-state:paused]",
           innerClassName
         )}

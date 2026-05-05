@@ -1,29 +1,45 @@
 "use client"
 
 /**
- * HorizontalArtworkStrip — full-bleed horizontal scroll triggered by vertical scroll.
+ * HorizontalArtworkStrip — slow infinite carousel.
  *
- * As user scrolls down, artwork images translate horizontally (parallax strip).
- * Creates a gallery walkway feeling.
+ * Artwork images continuously scroll horizontally like a gallery walkway.
+ * Duplicates items for seamless loop.
  */
 
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 import Image from "next/image"
-import { motion, useScroll, useTransform } from "motion/react"
+import { motion, useAnimationFrame, useMotionValue, useTransform } from "motion/react"
 import type { Artwork } from "@/lib/types"
 
 export function HorizontalArtworkStrip({ artworks }: { artworks: Artwork[] }) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const baseX = useMotionValue(0)
+  const [isHovered, setIsHovered] = useState(false)
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
+  // Duplicate items 3x for seamless loop
+  const items = [...artworks, ...artworks, ...artworks]
+
+  const speed = 0.4 // pixels per frame (slow)
+
+  useAnimationFrame((_, delta) => {
+    if (!containerRef.current) return
+
+    const container = containerRef.current
+    const singleSetWidth = container.scrollWidth / 3
+
+    let newX = baseX.get() - (isHovered ? speed * 0.2 : speed) * (delta / 16)
+
+    // Reset when we've scrolled one full set
+    if (Math.abs(newX) >= singleSetWidth) {
+      newX = 0
+    }
+
+    baseX.set(newX)
   })
 
-  const x = useTransform(scrollYProgress, [0, 1], ["5%", "-55%"])
-
   return (
-    <section ref={containerRef} className="relative py-24 md:py-32">
+    <section className="relative py-24 md:py-32">
       {/* Section label */}
       <div className="mb-12 px-6 md:px-16 lg:px-32">
         <div className="mx-auto flex max-w-[1400px] items-center gap-4">
@@ -34,15 +50,20 @@ export function HorizontalArtworkStrip({ artworks }: { artworks: Artwork[] }) {
         </div>
       </div>
 
-      {/* Horizontal track */}
-      <div className="relative overflow-hidden">
+      {/* Horizontal track — infinite scroll */}
+      <div
+        className="relative overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <motion.div
-          style={{ x }}
-          className="flex w-max items-center gap-6 px-6 md:gap-10 md:px-16"
+          ref={containerRef}
+          className="flex w-max items-center gap-6 md:gap-10"
+          style={{ x: baseX }}
         >
-          {artworks.map((artwork, i) => (
+          {items.map((artwork, i) => (
             <div
-              key={artwork._id}
+              key={`${artwork._id}-${i}`}
               className="group relative flex-shrink-0"
               data-cursor="view"
             >
@@ -58,7 +79,7 @@ export function HorizontalArtworkStrip({ artworks }: { artworks: Artwork[] }) {
                 <div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100">
                   <div className="p-6">
                     <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">
-                      {String(i + 1).padStart(2, "0")}
+                      {String((i % artworks.length) + 1).padStart(2, "0")}
                     </span>
                     <h3 className="mt-1 font-display text-xl font-light text-white">
                       {artwork.title}

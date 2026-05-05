@@ -1,32 +1,39 @@
 "use client"
 
 /**
- * PageTransition — cinematic route-change curtain.
+ * PageTransition — blink/flash route transition.
  *
- * A black wipe slides across on navigation, then fades out.
- * Wraps children in AnimatePresence keyed by pathname.
+ * Instead of a curtain wipe, the screen briefly flashes dark
+ * like a camera shutter or an eye blink. Fast, elegant, unobtrusive.
  */
 
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "motion/react"
-import { EASE_OUT_EXPO } from "@/lib/motion"
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const [isNavigating, setIsNavigating] = useState(false)
   const [displayChildren, setDisplayChildren] = useState(children)
+  const [isBlinking, setIsBlinking] = useState(false)
 
   useEffect(() => {
-    // When pathname changes, trigger curtain
-    setIsNavigating(true)
+    // Start blink
+    setIsBlinking(true)
 
-    const timer = setTimeout(() => {
+    // Swap content at the peak of the blink (when screen is darkest)
+    const swapTimer = setTimeout(() => {
       setDisplayChildren(children)
-      setIsNavigating(false)
-    }, 600) // Halfway through curtain animation we swap content
+    }, 250)
 
-    return () => clearTimeout(timer)
+    // End blink
+    const endTimer = setTimeout(() => {
+      setIsBlinking(false)
+    }, 500)
+
+    return () => {
+      clearTimeout(swapTimer)
+      clearTimeout(endTimer)
+    }
   }, [pathname, children])
 
   return (
@@ -34,24 +41,27 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       <AnimatePresence mode="wait">
         <motion.div
           key={pathname}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.95 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           {displayChildren}
         </motion.div>
       </AnimatePresence>
 
-      {/* Curtain overlay */}
+      {/* Blink overlay */}
       <AnimatePresence>
-        {isNavigating && (
+        {isBlinking && (
           <motion.div
-            initial={{ x: "-100%" }}
-            animate={{ x: "0%" }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 1.2, ease: EASE_OUT_EXPO }}
-            className="fixed inset-0 z-[9998] bg-background"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 1, 0] }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: 0.5,
+              times: [0, 0.3, 0.7, 1],
+              ease: "easeInOut",
+            }}
+            className="pointer-events-none fixed inset-0 z-[9998] bg-black"
           />
         )}
       </AnimatePresence>

@@ -58,8 +58,8 @@ export function AboutSection() {
           <div className="lg:col-span-6">
             <ImageReveal delay={0.25} className="aspect-square bg-foreground/5">
               <Image
-                src="/studio-portrait.jpg"
-                alt="Atelier de pictură în Viena"
+                src="/Untitled design.jpg"
+                alt="Design conceptual — artă și terapie"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

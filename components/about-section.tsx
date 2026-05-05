@@ -58,7 +58,7 @@ export function AboutSection() {
           <div className="lg:col-span-6">
             <ImageReveal delay={0.25} className="aspect-square bg-foreground/5">
               <Image
-                src="/Untitled design.jpg"
+                src="/Untitled design (1).jpg"
                 alt="Design conceptual — artă și terapie"
                 fill
                 className="object-cover"
@@ -96,7 +96,13 @@ export function AboutSection() {
               <Reveal delay={0.55}>
                 <div className="flex items-center gap-4 mb-10">
                   <div className="w-12 h-12 rounded-full bg-foreground/10 overflow-hidden relative shrink-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-transparent" />
+                    <Image
+                      src="/Untitled design.jpg"
+                      alt="Sara M."
+                      fill
+                      className="object-cover"
+                      sizes="48px"
+                    />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-foreground">Sara M.</p>

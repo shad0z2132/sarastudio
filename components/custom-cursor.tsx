@@ -1,10 +1,10 @@
 "use client"
 
 /**
- * CustomCursor — elegant triangle cursor.
+ * CustomCursor — large triangle cursor, native cursor hidden.
  *
- * A minimal triangle pointer that follows the mouse with spring physics.
- * Hidden on touch devices. Mix-blend-difference for contrast.
+ * Only a white triangle follows the mouse. No native cursor visible.
+ * Hidden on touch devices.
  */
 
 import { useEffect, useState } from "react"
@@ -35,12 +35,16 @@ export function CustomCursor() {
 
     const handleLeave = () => setIsVisible(false)
 
+    // Hide native cursor on desktop
+    document.body.style.cursor = "none"
+
     window.addEventListener("mousemove", moveCursor)
     document.addEventListener("mouseleave", handleLeave)
 
     return () => {
       window.removeEventListener("mousemove", moveCursor)
       document.removeEventListener("mouseleave", handleLeave)
+      document.body.style.cursor = ""
     }
   }, [cursorX, cursorY])
 
@@ -56,26 +60,16 @@ export function CustomCursor() {
         translateY: "-50%",
       }}
     >
-      {/* Triangle cursor */}
       <motion.div
         animate={{
           opacity: isVisible ? 1 : 0,
           scale: isVisible ? 1 : 0.5,
         }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
-        className="relative"
+        transition={{ duration: 0.15, ease: "easeOut" }}
       >
-        {/* Main triangle shape */}
+        {/* Large white triangle */}
         <div
-          className="w-3 h-3 bg-white"
-          style={{
-            clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
-            transform: "rotate(-45deg)",
-          }}
-        />
-        {/* Subtle glow */}
-        <div
-          className="absolute inset-0 -z-10 scale-150 blur-sm bg-white/20"
+          className="w-6 h-6 bg-white"
           style={{
             clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
             transform: "rotate(-45deg)",

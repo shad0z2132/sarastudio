@@ -9,7 +9,9 @@ import { SmoothScroll } from "@/components/smooth-scroll"
 import { PageTransition } from "@/components/page-transition"
 import { PagePreloader } from "@/components/page-preloader"
 import { AmbientGlow } from "@/components/ambient-glow"
-import { CanvasTexture } from "@/components/canvas-texture"
+import { OilPaintTexture } from "@/components/oil-paint-texture"
+import { EdgeLightLeaks } from "@/components/edge-light-leaks"
+import { CinematicVignette } from "@/components/cinematic-vignette"
 import { DustParticles } from "@/components/dust-particles"
 import "./globals.css"
 
@@ -59,7 +61,9 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <PagePreloader />
         <AmbientGlow />
-        <CanvasTexture />
+        <OilPaintTexture />
+        <EdgeLightLeaks />
+        <CinematicVignette />
         <DustParticles count={20} />
         <ShadowCurtain />
         <CustomCursor />

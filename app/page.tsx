@@ -216,60 +216,75 @@ export default async function HomePage() {
       <WorkshopCTA />
 
       {/* 07 — REFLECȚII */}
-      <section className="relative bg-gradient-to-b from-background via-[#0E0B0A] to-background px-6 py-32 md:px-16 md:py-48 lg:px-32">
+      <section className="relative overflow-hidden px-6 py-32 md:px-16 md:py-48 lg:px-32">
         <span
           aria-hidden
           className="absolute inset-x-6 top-0 h-px bg-foreground/10 md:inset-x-16 lg:inset-x-32"
         />
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-16">
-          <Reveal>
-            <div className="flex flex-col gap-8">
-              <div className="flex items-center justify-between gap-6">
+        <div className="mx-auto max-w-[1400px]">
+          {/* Section header */}
+          <div className="mb-16 md:mb-24">
+            <div className="flex items-center justify-between gap-6 mb-10">
+              <Reveal>
                 <div className="flex items-center gap-5">
-                  <span className="font-mono text-xs uppercase tracking-[0.3em] text-foreground/60">
+                  <span className="font-mono text-xs uppercase tracking-[0.3em] text-foreground/50">
                     07 — Reflecții
                   </span>
                   <span
                     aria-hidden
-                    className="hidden h-px w-16 bg-foreground/20 md:inline-block"
+                    className="hidden h-px w-12 bg-accent/40 md:inline-block"
                   />
                 </div>
-                <span className="font-mono text-xs uppercase tracking-[0.3em] text-foreground/30">
+              </Reveal>
+              <Reveal>
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-foreground/25">
                   Arhivă deschisă
                 </span>
-              </div>
+              </Reveal>
+            </div>
 
-              <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-16">
-                <h2 className="max-w-[14ch] font-display text-4xl font-light leading-[1.05] text-foreground text-balance md:text-7xl">
-                  Însemnări{" "}
-                  <span className="italic text-muted-foreground">
-                    din atelier
-                  </span>
-                </h2>
-                <p className="max-w-[36ch] font-sans text-base leading-relaxed text-muted-foreground">
-                  Texte scurte, jurnale de lucru, note din nopțile în care
-                  pictura nu iese — și din cele în care, în sfârșit, iese.
-                </p>
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-7">
+                <Reveal delay={0.1}>
+                  <h2 className="font-display text-[clamp(3rem,8vw,8rem)] font-light leading-[0.95] tracking-[-0.02em] text-foreground">
+                    Însemnări
+                    <br />
+                    <span className="italic text-foreground/40">din atelier</span>
+                  </h2>
+                </Reveal>
+              </div>
+              <div className="flex items-end lg:col-span-4 lg:col-start-9">
+                <Reveal delay={0.2}>
+                  <p className="text-base leading-relaxed text-foreground/40 md:text-lg">
+                    Texte scurte, jurnale de lucru, note din nopțile în care
+                    pictura nu iese — și din cele în care, în sfârșit, iese.
+                  </p>
+                </Reveal>
               </div>
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.2}>
-            <ReflectionsList items={reflections} />
-          </Reveal>
+          {/* Reflections list */}
+          <ReflectionsList items={reflections} />
 
-          <Link
-            href="/reflectii"
-            className="group relative inline-flex w-fit items-center pt-4 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground transition-colors duration-[800ms] ease-out hover:text-foreground"
-          >
-            <span className="relative">
-              Vezi toate reflecțiile →
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -bottom-1 left-0 h-px w-[30%] bg-current transition-[width] duration-[800ms] ease-out group-hover:w-full"
-              />
-            </span>
-          </Link>
+          {/* CTA */}
+          <Reveal delay={0.3}>
+            <div className="mt-16 flex items-center gap-6">
+              <span className="h-px w-12 bg-accent/30" />
+              <Link
+                href="/reflectii"
+                className="group relative inline-flex items-center font-mono text-xs uppercase tracking-[0.3em] text-foreground/50 transition-colors duration-[800ms] ease-out hover:text-foreground"
+              >
+                <span className="relative">
+                  Vezi toate reflecțiile →
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute -bottom-1 left-0 h-px w-0 bg-current transition-[width] duration-[800ms] ease-out group-hover:w-full"
+                  />
+                </span>
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 

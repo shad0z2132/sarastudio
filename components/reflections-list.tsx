@@ -36,7 +36,7 @@ export function ReflectionsList({ items }: { items: Reflection[] }) {
       <FadeIn>
         <Link
           href={`/reflectii/${featured.slug}`}
-          className="group relative grid cursor-none grid-cols-1 gap-8 border-t border-foreground/20 py-16 transition-all duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)] hover:pl-2 focus-visible:pl-2 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-accent md:grid-cols-12 md:gap-12 md:py-24"
+          className="group relative grid grid-cols-1 gap-8 border-t border-foreground/20 py-16 transition-all duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)] hover:pl-2 focus-visible:pl-2 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-accent md:grid-cols-12 md:gap-12 md:py-24"
         >
           {/* Large cover */}
           <div className="relative md:col-span-5">
@@ -111,7 +111,7 @@ export function ReflectionsList({ items }: { items: Reflection[] }) {
             <FadeIn delay={0.05 * (i + 1)}>
               <Link
                 href={`/reflectii/${r.slug}`}
-                className="group relative grid cursor-none grid-cols-1 gap-4 py-12 transition-all duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)] hover:pl-6 focus-visible:pl-6 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-accent md:grid-cols-12 md:gap-8 md:py-16"
+                className="group relative grid grid-cols-1 gap-4 py-12 transition-all duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)] hover:pl-6 focus-visible:pl-6 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-accent md:grid-cols-12 md:gap-8 md:py-16"
               >
                 {/* Left accent line */}
                 <span

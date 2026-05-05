@@ -64,8 +64,8 @@ export function PaintingHover({
   const pctX = rect.width > 0 ? (mouse.x / rect.width) * 100 : 50
   const pctY = rect.height > 0 ? (mouse.y / rect.height) * 100 : 50
 
-  const lensSize = 150
-  const zoom = 2.5
+  const lensSize = 90
+  const zoom = 2
 
   const lensX = mouse.x - lensSize / 2
   const lensY = mouse.y - lensSize / 2

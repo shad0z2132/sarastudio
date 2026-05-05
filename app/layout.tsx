@@ -8,6 +8,7 @@ import { ScrollPercentage } from "@/components/scroll-percentage"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { PageTransition } from "@/components/page-transition"
 import { PagePreloader } from "@/components/page-preloader"
+import { PageBackground } from "@/components/page-background"
 import { AmbientGlow } from "@/components/ambient-glow"
 import { OilPaintTexture } from "@/components/oil-paint-texture"
 import { EdgeLightLeaks } from "@/components/edge-light-leaks"
@@ -59,6 +60,7 @@ export default function RootLayout({
       className={`${geist.variable} ${geistMono.variable} ${cormorant.variable} bg-background`}
     >
       <body className="font-sans antialiased">
+        <PageBackground />
         <PagePreloader />
         <AmbientGlow />
         <OilPaintTexture />

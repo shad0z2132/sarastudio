@@ -8,6 +8,8 @@ import { Pillars } from "@/components/pillars"
 import { WorkshopCTA } from "@/components/workshop-cta"
 import { ReflectionsList } from "@/components/reflections-list"
 import { Reveal } from "@/components/reveal"
+import { Ticker } from "@/components/ticker"
+import { AboutSection } from "@/components/about-section"
 import { getArtworks, getReflections } from "@/lib/cms"
 
 export const metadata = {
@@ -31,7 +33,7 @@ export default async function HomePage() {
       {/* 01 — HERO */}
       <Hero />
 
-      {/* 02 — INVITAȚIE — asymmetric intro with pulled marginalia */}
+      {/* 02 — INVITAȚIE */}
       <section className="relative px-6 py-32 md:px-16 md:py-48 lg:px-32">
         <span
           aria-hidden
@@ -71,10 +73,22 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* 02b — ABOUT */}
+      <AboutSection />
+
       {/* 03 — MANIFEST */}
       <Manifest />
 
-      {/* 04 — FEATURED LUCRĂRI — editorial plates with staggered offsets */}
+      {/* Ticker between manifest and gallery */}
+      <div className="border-y border-foreground/10 py-5">
+        <Ticker speed={25}>
+          <span className="font-display text-xl lg:text-2xl text-foreground/[0.07] mx-6">
+            Galerie / Lucrări / Galerie / Lucrări / Galerie / Lucrări /
+          </span>
+        </Ticker>
+      </div>
+
+      {/* 04 — FEATURED LUCRĂRI */}
       <section className="relative px-6 py-32 md:px-16 md:py-48 lg:px-32">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
@@ -131,7 +145,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 05 — PRACTICĂ (Ulei · Simbol · Umbră) */}
+      {/* 05 — PRACTICĂ */}
       <Pillars />
 
       {/* 06 — WORKSHOP CTA */}
@@ -194,6 +208,15 @@ export default async function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* Footer ticker */}
+      <div className="border-y border-foreground/10 py-4">
+        <Ticker speed={35}>
+          <span className="font-mono text-[10px] tracking-[0.2em] text-foreground/20 uppercase mx-4">
+            Studio · Viena · Artă & Terapie · Pictură · Ulei · Acrilic · Workshop ·
+          </span>
+        </Ticker>
+      </div>
 
       {/* 08 — FOOTER */}
       <SiteFooter />

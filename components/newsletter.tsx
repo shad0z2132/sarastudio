@@ -56,6 +56,7 @@ export function Newsletter() {
                 disabled={status === "sending"}
                 className="peer w-full border-0 border-b border-foreground/30 bg-transparent pb-3 pt-1 font-sans text-base text-foreground placeholder:text-foreground/30 transition-[border-color] duration-[800ms] ease-out focus:border-foreground focus:outline-none disabled:opacity-50"
                 aria-label="Adresa ta de e-mail"
+                suppressHydrationWarning
               />
               <button
                 type="submit"

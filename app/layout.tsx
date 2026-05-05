@@ -3,6 +3,9 @@ import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { NoiseOverlay } from "@/components/noise-overlay"
 import { ShadowCurtain } from "@/components/shadow-curtain"
+import { CustomCursor } from "@/components/custom-cursor"
+import { ScrollPercentage } from "@/components/scroll-percentage"
+import { SmoothScroll } from "@/components/smooth-scroll"
 import "./globals.css"
 
 const geist = Geist({
@@ -50,7 +53,9 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         <ShadowCurtain />
-        {children}
+        <CustomCursor />
+        <ScrollPercentage />
+        <SmoothScroll>{children}</SmoothScroll>
         <NoiseOverlay />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>

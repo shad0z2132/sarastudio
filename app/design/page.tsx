@@ -429,7 +429,7 @@ export default function DesignSystemPage() {
             <div className="relative overflow-hidden md:col-span-8">
               <div
                 className="relative h-[240px] w-full bg-cover bg-center"
-                style={{ backgroundImage: "url(/artwork-abstract-01.jpg)" }}
+                style={{ backgroundImage: "url(/Screenshot 2026-05-05 213146.png)" }}
                 aria-hidden
               >
                 <div className="absolute inset-x-0 top-0 border-b border-border/60 bg-background/40 px-6 py-4 backdrop-blur-xl backdrop-saturate-150">
@@ -471,28 +471,28 @@ export default function DesignSystemPage() {
             <div className="md:col-span-8">
               <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
                 <ArtworkCard
-                  src="/artwork-abstract-01.jpg"
-                  alt="Abstract painting with raw umber light emerging from darkness"
-                  category="Abstracte / 014"
-                  title="Pragul dimineții"
-                  year="2024"
-                  medium="Oil on linen · 140 × 100 cm"
-                />
-                <ArtworkCard
-                  src="/artwork-symbolic-01.jpg"
-                  alt="Silhouetted archetypal figure with amber rim light"
-                  category="Simbolice / 007"
-                  title="Umbra care ascultă"
-                  year="2024"
-                  medium="Oil on linen · 180 × 120 cm"
-                />
-                <ArtworkCard
-                  src="/artwork-abstract-02.jpg"
-                  alt="Vertical band of cream and umber pigment on obsidian"
-                  category="Abstracte / 022"
-                  title="Axa tăcerii"
+                  src="/Screenshot 2026-05-05 213135.png"
+                  alt="Ființa sacră — figură umană violetă în fața unui portal cosmic"
+                  category="Simbolice / 002"
+                  title="Ființa sacră"
                   year="2025"
-                  medium="Oil on linen · 120 × 90 cm"
+                  medium="Ulei pe pânză · 80 × 100 cm"
+                />
+                <ArtworkCard
+                  src="/Screenshot 2026-05-05 213126.png"
+                  alt="Kundalini — femeie albastră cu șarpe înfășurat în jurul trupului"
+                  category="Simbolice / 003"
+                  title="Kundalini"
+                  year="2024"
+                  medium="Ulei pe pânză · 70 × 90 cm"
+                />
+                <ArtworkCard
+                  src="/Screenshot 2026-05-05 213116.png"
+                  alt="Reflecția — nud feminin așezat lângă apă"
+                  category="Simbolice / 004"
+                  title="Reflecția"
+                  year="2024"
+                  medium="Ulei pe pânză · 80 × 80 cm"
                 />
               </div>
             </div>

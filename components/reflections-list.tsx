@@ -35,7 +35,7 @@ export function ReflectionsList({ items }: { items: Reflection[] }) {
               alt=""
               fill
               sizes="(min-width: 768px) 40vw, 100vw"
-              className="object-cover saturate-[0.8] transition-all duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.02] group-hover:saturate-100"
+              className="object-cover saturate-[0.8] transition-all duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.03] group-hover:saturate-100"
               style={{ willChange: "transform, filter" }}
             />
           </div>

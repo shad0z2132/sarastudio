@@ -87,7 +87,7 @@ export function FeaturedArtwork({ artwork, index, priority = false }: Props) {
             willChange: "filter, transform",
             transform: "translateZ(0)",
           }}
-          className="object-cover saturate-[0.78] group-hover:scale-[1.04] group-hover:saturate-100"
+          className="object-cover object-center saturate-[0.85] transition-transform duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.04] group-hover:saturate-100"
         />
 
         {/* Soft umber bloom from below — appears on hover */}

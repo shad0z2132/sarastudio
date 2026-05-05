@@ -34,7 +34,7 @@ export function ArtworkCard({
 
   return (
     <figure className="group relative flex flex-col gap-6">
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface">
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface transition-transform duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-1">
         <Image
           src={src}
           alt={alt}
@@ -50,7 +50,7 @@ export function ArtworkCard({
             willChange: "filter, transform",
             transform: "translateZ(0)",
           }}
-          className="object-cover saturate-[0.82] group-hover:scale-[1.015] group-hover:saturate-100"
+          className="object-cover object-center saturate-[0.85] transition-transform duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.03] group-hover:saturate-100"
         />
 
         {/* Hover scrim */}
